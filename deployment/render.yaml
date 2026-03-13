@@ -1,0 +1,26 @@
+# render.yaml
+# Deploy the FastAPI backend to Render.com
+# Push your code to GitHub, then connect the repo in Render dashboard.
+
+services:
+  - type: web
+    name: smart-city-api
+    env: python
+    region: oregon
+    plan: free
+
+    # Command to start the FastAPI server
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+
+    # Install Python dependencies
+    buildCommand: pip install -r requirements.txt
+
+    # Environment variables (set these in Render dashboard)
+    envVars:
+      - key: DATABASE_URL
+        sync: false   # Set manually in Render dashboard → "Add Environment Variable"
+        # Value format: postgresql://USER:PASSWORD@HOST:5432/DBNAME
+
+      - key: KAFKA_SERVER
+        value: localhost:9092
+        # Change this if using a cloud Kafka provider like Confluent Cloud
