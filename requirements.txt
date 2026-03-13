@@ -5,8 +5,8 @@ psycopg2-binary==2.9.9
 
 kafka-python==2.0.2
 
-pandas==2.2.2
 numpy==1.26.4
+pandas==2.1.4
 
 scikit-learn==1.4.2
 
